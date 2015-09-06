@@ -1,4 +1,5 @@
-## Cressida
+## Cressida   [![Build Status](https://travis-ci.org/umayr/cressida.svg)](https://travis-ci.org/umayr/cressida)   [![npm version](https://badge.fury.io/js/cressida.svg)](http://badge.fury.io/js/cressida) [![tag](https://img.shields.io/github/tag/umayr/cressida.svg)]()   [![npm](https://img.shields.io/npm/dm/cressida.svg)]() [![Code Climate](https://codeclimate.com/github/umayr/cressida/badges/gpa.svg)](https://codeclimate.com/github/umayr/cressida)
+
 > Validation messages done simply.
 
 Sole purpose of this library is to generate validation error messages to provide application wide consistency. The perfect use could be automatic message generation as [Uranus](https://github.com/umayr/uranus) does.
