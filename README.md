@@ -26,8 +26,7 @@ Sole purpose of this library is to generate validation error messages to provide
 ### API
 
 ``` javascript
- var Cressida = require('cressida');
- var Message = Cressida.create();
+ var Message = require('cressida').create();
  
  Message('foo', '!empty') // foo should not be empty.
 ```
@@ -79,7 +78,7 @@ Every operator can be either positive or negative using `!`, `is` and/or `not` p
 Right now, Cressida only supports to change auxiliary verb in the message that is `should` by default.
 
 ``` javascript
- var Message = Cressida.create({ auxiliary : 'must' });
+ var Message = require('cressida').create({ auxiliary : 'must' });
  
  Message('foo', '!empty') // foo must not be empty.
 ```
