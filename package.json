@@ -1,13 +1,14 @@
 {
   "name": "cressida",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "validation messages done simply.",
-  "main": "./index.js",
+  "main": "./dist/index.js",
   "scripts": {
-    "jshint": "./node_modules/.bin/jshint --reporter=./node_modules/jshint-stylish --config=./.jshintrc ./index.js ./lib/. || true",
-    "jscs": "./node_modules/.bin/jscs ./index.js ./lib/. --config=./.jscsrc || true",
-    "pretest": "npm run jshint && npm run jscs",
-    "test": "./node_modules/.bin/mocha -R spec test/."
+    "eslint": "./node_modules/.bin/eslint --config ./.eslintrc ./src/. || true",
+    "build": "./node_modules/.bin/babel --no-non-standard --out-dir ./dist/. ./src/. || true",
+    "prepublish": "npm run build",
+    "pretest": "npm run eslint",
+    "test": "./node_modules/.bin/mocha --compilers js:babel/register -R spec test/."
   },
   "repository": {
     "type": "git",
@@ -20,9 +21,8 @@
   },
   "homepage": "https://github.com/umayr/cressida#readme",
   "devDependencies": {
-    "jscs": "^2.1.0",
-    "jshint": "^2.8.0",
-    "jshint-stylish": "^2.0.1",
+    "babel": "^5.8.21",
+    "eslint": "^1.1.0",
     "mocha": "^2.2.5"
   },
   "keywords": [
