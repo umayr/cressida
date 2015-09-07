@@ -11,7 +11,8 @@ const TYPES = {
   STRING: ['contains', 'alphanumeric', 'equals', 'alpha', 'len', 'length', 'lowercase', 'uppercase'],
   STANDALONE: ['email', 'url', 'ip', 'uuid', 'array', 'creditcard', 'int', 'float', 'decimal', 'date'],
   BOOL: ['boolean'],
-  ARRAY: ['in']
+  ARRAY: ['in'],
+  NONE: ['empty']
 };
 
 const STANDALONE = {
@@ -57,6 +58,15 @@ import { humanize } from '../utils';
 
 export default class Parser {
 
+  /**
+   * Static method to parse operator.
+   *
+   * Possible inputs can be:
+   * - Positives: empty, isEmpty, !notEmpty, !isNotEmpty
+   * - Negatives: !empty, !isEmpty, notEmpty
+   * @param operator
+   * @returns {*[]}
+   */
   static operator(operator) {
     let _count = 0;
     let _not = false;
@@ -79,13 +89,24 @@ export default class Parser {
     return [_not, _operator, _type];
   }
 
+  /**
+   * Static method to get the type of the operator.
+   *
+   * @param operator
+   * @returns {string}
+   */
   static type(operator) {
+    if (!Parser.isSupported(operator)) throw new Error(`Provided operator \`${operator}\` is not supported.`);
     for (let type of Object.keys(TYPES)) {
       if (TYPES[type].includes(operator)) return String(type).toLowerCase();
     }
-    return 'none';
   }
 
+  /**
+   * Static method that wraps all type wise operations.
+   *
+   * @returns {*}
+   */
   static get methods() {
     return {
       date() {
@@ -129,5 +150,42 @@ export default class Parser {
     };
   }
 
-;
+  /**
+   * Return true if provided operator is valid.
+   *
+   * @param operator
+   * @returns {*}
+   */
+  static isSupported(operator) {
+    let _all = [];
+    for (let type of Object.keys(TYPES)) {
+      _all.push(...TYPES[type]);
+    }
+    return Parser._containsAny(operator.toLowerCase(), _all);
+  }
+
+  /**
+   * Search through an array and returns true if any value of array matches the provided needle.
+   *
+   * @param needle
+   * @param haystack
+   * @returns {boolean}
+   * @private
+   */
+  static _containsAny(needle, haystack) {
+    for (let straw of haystack) {
+      if (needle.includes(straw)) return true;
+    }
+    return false;
+  }
+
+  /**
+   * Parse arguments.
+   *
+   * @returns {*[]}
+   */
+  static args() {
+    let [_first, _second, _third] = Array.from(arguments);
+    return Parser.isSupported(_first) ? [_third, _first, _second] : [_first, _second, _third];
+  }
 }
