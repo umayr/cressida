@@ -5,6 +5,12 @@
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+/**
+ * Makes date a bit more humane.
+ *
+ * @param value
+ * @returns {*}
+ */
 export function humanize(value) {
   let _date = (typeof value === 'undefined') ? new Date() : new Date(value);
 
