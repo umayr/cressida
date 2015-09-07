@@ -2,6 +2,7 @@
  * Created by Umayr Shahid on 8/18/2015.
  */
 
+/* eslint-env node, mocha */
 'use strict';
 
 import { equal } from 'assert';
@@ -19,10 +20,12 @@ function make(operator, message, args, instance = Cressida.create()) {
 
   positives.map((o) => {
     equal(instance('foo', o, args), `foo ${ Cressida._options.auxiliary } be ${ message }`);
+    equal(instance(o, args), `${ Cressida._options.auxiliary } be ${ message }`);
   });
 
   negatives.map((o) => {
     equal(instance('foo', o, args), `foo ${ Cressida._options.auxiliary } not be ${ message }`);
+    equal(instance(o, args), `${ Cressida._options.auxiliary } not be ${ message }`);
   });
 }
 
@@ -192,19 +195,24 @@ describe('Cressida', () => {
     });
   });
   describe('options', () => {
-
-    describe('#auxiliary', () =>{
-      it('should set the options correctly', () => {
+    describe('#auxiliary', () => {
+      it('should set the `auxiliary` option correctly', () => {
         {
-          let Message = Cressida.create({auxiliary : 'must'});
-          equal(Message('foo', '!empty'), 'foo must not be empty.')
+          let Message = Cressida.create({auxiliary: 'must'});
+          equal(Message('foo', '!empty'), 'foo must not be empty.');
         }
 
         {
-          let Message = Cressida.create({auxiliary : 'can'});
-          equal(Message('foo', 'empty'), 'foo can be empty.')
+          let Message = Cressida.create({auxiliary: 'can'});
+          equal(Message('foo', 'empty'), 'foo can be empty.');
         }
-      })
+      });
+      it('should set the `includeName` option correctly', () => {
+        let Message = Cressida.create({includeName: false});
+
+        equal(Message('foo', '!empty'), 'should not be empty.');
+        equal(Message('foo', 'len', [10, 20]), 'should be between 10 to 20 characters.');
+      });
     });
 
   });
