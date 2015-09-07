@@ -84,7 +84,7 @@ Cressida supports to change auxiliary verb in the message that is `should` by de
  Message('foo', '!empty') // foo must not be empty.
 ```
 
-It also support to omit names from the messages.
+It also supports to omit names from the messages.
 
 ``` javascript
  var Message = require('cressida').create({ includeName: false });
