@@ -87,6 +87,10 @@ describe('Cressida', () => {
         min: {
           message: 'minimum 5.',
           args: 5
+        },
+        divisible: {
+          message: 'divisible by 5.',
+          args: 5
         }
       };
       for (let operator of Object.keys(src)) {
@@ -135,6 +139,15 @@ describe('Cressida', () => {
         },
         ip: {
           message: 'a valid ip address.'
+        },
+        ipv4: {
+          message: 'a valid ipv4 address.'
+        },
+        ipv6: {
+          message: 'a valid ipv6 address.'
+        },
+        json: {
+          message: 'a valid json string.'
         },
         url: {
           message: 'a valid url.'

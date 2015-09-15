@@ -7,9 +7,9 @@
 
 const TYPES = {
   DATE: ['before', 'after'],
-  NUMBER: ['greater', 'smaller', 'min', 'max'],
+  NUMBER: ['greater', 'smaller', 'min', 'max', 'divisible'],
   STRING: ['contains', 'alphanumeric', 'equals', 'alpha', 'len', 'length', 'lowercase', 'uppercase'],
-  STANDALONE: ['email', 'url', 'ip', 'uuid', 'array', 'creditcard', 'int', 'float', 'decimal', 'date'],
+  STANDALONE: ['email', 'regex', 'url', 'json', 'ip', 'ipv4', 'ipv6', 'uuid', 'uuidv3', 'uuidv4', 'uuidv5', 'array', 'creditcard', 'int', 'float', 'decimal', 'date', 'hexadecimal', 'hexacolor'],
   BOOL: ['boolean'],
   ARRAY: ['in'],
   NONE: ['empty']
@@ -21,7 +21,10 @@ const STANDALONE = {
   INT: 'integer value',
   FLOAT: 'float value',
   DECIMAL: 'decimal value',
-  IP: 'ip address'
+  IP: 'ip address',
+  IPV4: 'ipv4 address',
+  IPV6: 'ipv6 address',
+  JSON: 'json string'
 };
 
 const STRING = {
@@ -39,7 +42,8 @@ const NUMBER = {
   GREATER: 'greater than %s',
   SMALLER: 'smaller than %s',
   MIN: 'minimum %s',
-  MAX: 'maximum %s'
+  MAX: 'maximum %s',
+  DIVISIBLE: 'divisible by %s'
 };
 
 const BOOL = {
@@ -77,7 +81,7 @@ export default class Parser {
       _not = !_not;
       _count++;
     }
-    if (operator.includes('is')) _count += 2;
+    if (operator.substr(0, 3).toLowerCase().includes('is')) _count += 2;
     if (operator.includes('not')) {
       _not = !_not;
       _count += 3;
