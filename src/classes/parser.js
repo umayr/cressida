@@ -35,7 +35,8 @@ const STRING = {
   EQUALS: 'equal to %s',
   CONTAINS: 'contains %s in it',
   LEN: 'between %s to %s characters',
-  LENGTH: 'between %s to %s characters'
+  LENGTH: 'between %s to %s characters',
+  ATLEAST: 'at least %s characters long'
 };
 
 const NUMBER = {
@@ -125,7 +126,10 @@ export default class Parser {
         let [_operator, _args] = Array.from(arguments);
         let _msg;
 
-        if (_operator === 'len' || _operator === 'length' || _operator === 'equals' || _operator === 'contains') _msg = format(STRING[_operator.toUpperCase()], ..._args);
+        if (_operator === 'len' || _operator === 'length' || _operator === 'equals' || _operator === 'contains') {
+          if ((_operator === 'len' || _operator === 'length') && _args.length === 1) _operator = 'atleast';
+          _msg = format(STRING[_operator.toUpperCase()], ..._args);
+        }
         else _msg = `${ STRING[_operator.toUpperCase()] || _operator }`;
 
         return _msg;
