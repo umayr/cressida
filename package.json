@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "eslint": "./node_modules/.bin/eslint --config ./.eslintrc ./src/. || true",
-    "build": "./node_modules/.bin/babel --no-non-standard --out-dir ./dist/. ./src/. || true",
+    "build": "./node_modules/.bin/babel --modules umd --no-non-standard --out-dir ./dist/. ./src/. || true",
     "prepublish": "npm run build",
     "pretest": "npm run eslint",
     "test": "./node_modules/.bin/mocha --compilers js:babel/register -R spec test/."
