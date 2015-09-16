@@ -7,7 +7,7 @@
 
 const TYPES = {
   DATE: ['before', 'after'],
-  NUMBER: ['greater', 'smaller', 'min', 'max', 'divisible'],
+  NUMBER: ['greater', 'smaller', 'min', 'max', 'divisible', 'divisibleby'],
   STRING: ['contains', 'alphanumeric', 'numeric', 'equals', 'alpha', 'len', 'length', 'bytelength', 'lowercase', 'uppercase', 'null'],
   STANDALONE: ['email', 'regex', 'url', 'json', 'ip', 'ipv4', 'ipv6', 'uuid', 'uuidv3', 'uuidv4', 'uuidv5', 'array', 'creditcard', 'int', 'float', 'decimal', 'date', 'hexadecimal', 'hexcolor'],
   PATTERN: ['matches', 'is', 'not'],
@@ -55,7 +55,8 @@ const NUMBER = {
   SMALLER: 'smaller than %s',
   MIN: 'minimum %s',
   MAX: 'maximum %s',
-  DIVISIBLE: 'divisible by %s'
+  DIVISIBLE: 'divisible by %s',
+  DIVISIBLEBY: 'divisible by %s'
 };
 
 const BOOL = {
