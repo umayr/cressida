@@ -8,7 +8,7 @@
 const TYPES = {
   DATE: ['before', 'after'],
   NUMBER: ['greater', 'smaller', 'min', 'max', 'divisible'],
-  STRING: ['contains', 'alphanumeric', 'numeric', 'equals', 'alpha', 'len', 'length', 'bytelength', 'lowercase', 'uppercase'],
+  STRING: ['contains', 'alphanumeric', 'numeric', 'equals', 'alpha', 'len', 'length', 'bytelength', 'lowercase', 'uppercase', 'null'],
   STANDALONE: ['email', 'regex', 'url', 'json', 'ip', 'ipv4', 'ipv6', 'uuid', 'uuidv3', 'uuidv4', 'uuidv5', 'array', 'creditcard', 'int', 'float', 'decimal', 'date', 'hexadecimal', 'hexcolor'],
   BOOL: ['boolean'],
   ARRAY: ['in'],
@@ -39,7 +39,8 @@ const STRING = {
   LENGTH: 'between %s to %s characters',
   BYTELENGTH: 'between %s to %s characters',
   ATLEAST: 'at least %s characters long',
-  NUMERIC: 'consist of only numbers'
+  NUMERIC: 'consist of only numbers',
+  NULL: 'a null string'
 };
 
 const NUMBER = {
