@@ -53,7 +53,7 @@ describe('Cressida', () => {
           args: ['bar']
         },
         contains: {
-          message: 'contains bar in it.',
+          message: 'containing bar in it.',
           args: ['bar']
         },
         length: {
@@ -227,6 +227,5 @@ describe('Cressida', () => {
         equal(Message('foo', 'len', [10, 20]), 'should be between 10 to 20 characters.');
       });
     });
-
   });
 });
