@@ -59,7 +59,7 @@ const ARRAY = {
 
 import { format } from 'util';
 
-import { humanize } from '../utils';
+import { humanize, flatten } from '../utils';
 
 export default class Parser {
 
@@ -146,9 +146,11 @@ export default class Parser {
         let [, _args] = Array.from(arguments);
         let _msg;
 
+        if (Array.isArray(_args)) _args = flatten(_args);
+
         if (_args.length === 2) _msg = `${ format(ARRAY['BINARY'], ..._args) }`;
         else if (_args.length > 2) _msg = `${ format(ARRAY['N'], _args.join(', ')) }`;
-        else _msg = `${ format(ARRAY['ONE'], ..._args) }`;
+        else _msg = `${ format(ARRAY['ONE'], typeof _args === 'object' ? JSON.stringify(_args[0]) : _args[0]) }`;
 
         return _msg;
       },
