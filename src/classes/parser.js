@@ -8,7 +8,7 @@
 const TYPES = {
   DATE: ['before', 'after'],
   NUMBER: ['greater', 'smaller', 'min', 'max', 'divisible'],
-  STRING: ['contains', 'alphanumeric', 'numeric', 'equals', 'alpha', 'len', 'length', 'lowercase', 'uppercase'],
+  STRING: ['contains', 'alphanumeric', 'numeric', 'equals', 'alpha', 'len', 'length', 'bytelength', 'lowercase', 'uppercase'],
   STANDALONE: ['email', 'regex', 'url', 'json', 'ip', 'ipv4', 'ipv6', 'uuid', 'uuidv3', 'uuidv4', 'uuidv5', 'array', 'creditcard', 'int', 'float', 'decimal', 'date', 'hexadecimal', 'hexacolor'],
   BOOL: ['boolean'],
   ARRAY: ['in'],
@@ -36,6 +36,7 @@ const STRING = {
   CONTAINS: 'contains %s in it',
   LEN: 'between %s to %s characters',
   LENGTH: 'between %s to %s characters',
+  BYTELENGTH: 'between %s to %s characters',
   ATLEAST: 'at least %s characters long',
   NUMERIC: 'consist of only numbers'
 };
@@ -127,8 +128,8 @@ export default class Parser {
         let [_operator, _args] = Array.from(arguments);
         let _msg;
 
-        if (_operator === 'len' || _operator === 'length' || _operator === 'equals' || _operator === 'contains') {
-          if ((_operator === 'len' || _operator === 'length') && _args.length === 1) _operator = 'atleast';
+        if (_operator === 'len' || _operator === 'length' || _operator === 'bytelength' || _operator === 'equals' || _operator === 'contains') {
+          if ((_operator === 'len' || _operator === 'length' || _operator === 'bytelength') && _args.length === 1) _operator = 'atleast';
           _msg = format(STRING[_operator.toUpperCase()], ..._args);
         }
         else _msg = `${ STRING[_operator.toUpperCase()] || _operator }`;
