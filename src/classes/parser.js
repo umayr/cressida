@@ -35,7 +35,7 @@ const STRING = {
   ALPHA: 'consist of only letters',
   ALPHANUMERIC: 'consist of only letters & numbers',
   EQUALS: 'equal to %s',
-  CONTAINS: 'contains %s in it',
+  CONTAINS: 'containing %s in it',
   LEN: 'between %s to %s characters',
   LENGTH: 'between %s to %s characters',
   BYTELENGTH: 'between %s to %s characters',
