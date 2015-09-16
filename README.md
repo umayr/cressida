@@ -37,19 +37,25 @@ Cressida supports numerous operators such as:
  'alphanumeric', // string is alphanumeric
  'equals', // string equals to another string
  'alpha', // string consists for only letters
+ 'numeric', // string consists for only numbers
  'len', // string is between given length
  'length', // alias for `len`
  'lowercase', // string is lowercase
  'uppercase', // string is uppercase
+ 'null', // string is null
+ 'json', // string is json
  'email', // value is email
  'url', // value is url
  'ip', // value is ip address
  'uuid', // value is valid uuid
+ 'matches', // value matches the regex
  'array', // value is an array
  'creditcard', // value is a credit card number
  'int', // value is an integer
  'float', // value is a float number
  'decimal', // value is decimal number
+ 'hexadecimal', // value is hexadecimal number
+ 'hexcolor', // value is hex color code
  'date', // value is valid date
  'boolean', // value is either this or that
  'in', // value is in provided array
@@ -59,6 +65,7 @@ Cressida supports numerous operators such as:
  'smaller', // number is smaller than provided value
  'min', // number limit is minimum this
  'max' // number limit is maximum this
+ 'divisible' // number is divisible by this
 ```
 
 Every operator can be either positive or negative using `!`, `is` and/or `not` prefixes.
