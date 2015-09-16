@@ -162,7 +162,7 @@ export default class Parser {
 
         if (_args.length === 2) _msg = `${ format(ARRAY['BINARY'], ..._args) }`;
         else if (_args.length > 2) _msg = `${ format(ARRAY['N'], _args.join(', ')) }`;
-        else _msg = `${ format(ARRAY['ONE'], typeof _args === 'object' ? JSON.stringify(_args[0]) : _args[0]) }`;
+        else _msg = `${ format(ARRAY['ONE'], typeof _args[0] === 'object' ? JSON.stringify(_args[0]) : _args[0]) }`;
 
         return _msg;
       },
