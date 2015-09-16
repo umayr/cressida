@@ -10,6 +10,7 @@ const TYPES = {
   NUMBER: ['greater', 'smaller', 'min', 'max', 'divisible'],
   STRING: ['contains', 'alphanumeric', 'numeric', 'equals', 'alpha', 'len', 'length', 'bytelength', 'lowercase', 'uppercase', 'null'],
   STANDALONE: ['email', 'regex', 'url', 'json', 'ip', 'ipv4', 'ipv6', 'uuid', 'uuidv3', 'uuidv4', 'uuidv5', 'array', 'creditcard', 'int', 'float', 'decimal', 'date', 'hexadecimal', 'hexcolor'],
+  PATTERN: ['matches', 'is', 'not'],
   BOOL: ['boolean'],
   ARRAY: ['in'],
   NONE: ['empty']
@@ -41,6 +42,12 @@ const STRING = {
   ATLEAST: 'at least %s characters long',
   NUMERIC: 'consist of only numbers',
   NULL: 'a null string'
+};
+
+const PATTERN = {
+  MATCHES: 'matching with %s regex',
+  IS: 'matching with %s regex',
+  NOT: 'matching with %s regex'
 };
 
 const NUMBER = {
@@ -157,6 +164,15 @@ export default class Parser {
         else _msg = `${ format(ARRAY['ONE'], typeof _args === 'object' ? JSON.stringify(_args[0]) : _args[0]) }`;
 
         return _msg;
+      },
+      pattern() {
+        let [_operator, _args] = Array.from(arguments);
+        let _regex;
+
+        if (_args.length > 1) _regex = new RegExp(_args[0], _args[1]);
+        else _regex = new RegExp(_args[0]);
+
+        return `${format(PATTERN[_operator.toUpperCase()], _regex) || _operator }`;
       },
       none(operator) {
         return operator;
