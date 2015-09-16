@@ -9,7 +9,7 @@ const TYPES = {
   DATE: ['before', 'after'],
   NUMBER: ['greater', 'smaller', 'min', 'max', 'divisible'],
   STRING: ['contains', 'alphanumeric', 'numeric', 'equals', 'alpha', 'len', 'length', 'bytelength', 'lowercase', 'uppercase'],
-  STANDALONE: ['email', 'regex', 'url', 'json', 'ip', 'ipv4', 'ipv6', 'uuid', 'uuidv3', 'uuidv4', 'uuidv5', 'array', 'creditcard', 'int', 'float', 'decimal', 'date', 'hexadecimal', 'hexacolor'],
+  STANDALONE: ['email', 'regex', 'url', 'json', 'ip', 'ipv4', 'ipv6', 'uuid', 'uuidv3', 'uuidv4', 'uuidv5', 'array', 'creditcard', 'int', 'float', 'decimal', 'date', 'hexadecimal', 'hexcolor'],
   BOOL: ['boolean'],
   ARRAY: ['in'],
   NONE: ['empty']
@@ -24,7 +24,8 @@ const STANDALONE = {
   IP: 'ip address',
   IPV4: 'ipv4 address',
   IPV6: 'ipv6 address',
-  JSON: 'json string'
+  JSON: 'json string',
+  HEXCOLOR: 'hex color code'
 };
 
 const STRING = {
