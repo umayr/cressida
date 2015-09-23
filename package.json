@@ -5,7 +5,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "eslint": "./node_modules/.bin/eslint --config ./.eslintrc ./src/. || true",
-    "build": "./node_modules/.bin/babel --modules umd --source-maps --no-non-standard --out-dir ./dist/. ./src/. || true",
+    "build": "./node_modules/.bin/babel --modules umd --optional runtime --source-maps --no-non-standard --out-dir ./dist/. ./src/. || true",
     "prepublish": "npm run build",
     "pretest": "npm run eslint",
     "test": "./node_modules/.bin/mocha --compilers js:babel/register --reporter spec test/.",
@@ -33,5 +33,8 @@
     "utility",
     "error",
     "messages"
-  ]
+  ],
+  "dependencies": {
+    "babel-runtime": "^5.8.24"
+  }
 }
