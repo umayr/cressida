@@ -37,6 +37,21 @@ export default class Cressida {
    * @returns {Cressida.message}
    */
   static create(options) {
+
+    // Polyfill for string.includes();
+    if (!String.prototype.includes) {
+      String.prototype.includes = () => {
+        return String.prototype.indexOf.apply(this, arguments) > -1;
+      };
+    }
+
+    // Polyfill for array.includes();
+    if (!Array.prototype.includes) {
+      Array.prototype.includes = () => {
+        return Array.prototype.indexOf.apply(this, arguments) > -1;
+      };
+    }
+
     Cressida._options = Object.assign({}, DEFAULTS, options);
     return Cressida.message;
   }
