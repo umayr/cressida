@@ -90,6 +90,7 @@ export default class Parser {
     let _operator;
     let _type;
 
+    operator = String(operator);
     if (operator.includes('!')) {
       _not = !_not;
       _count++;
@@ -99,7 +100,6 @@ export default class Parser {
       _not = !_not;
       _count += 3;
     }
-
     _operator = operator.substr(_count, operator.length).toLowerCase();
     _type = Parser.type(_operator);
 
@@ -115,7 +115,7 @@ export default class Parser {
   static type(operator) {
     if (!Parser.isSupported(operator)) throw new Error(`Provided operator \`${operator}\` is not supported.`);
     for (let type of Object.keys(TYPES)) {
-      if (TYPES[type].includes(operator)) return String(type).toLowerCase();
+      if (Parser._containsAny(operator, TYPES[type])) return String(type).toLowerCase();
     }
   }
 
@@ -189,10 +189,18 @@ export default class Parser {
    */
   static isSupported(operator) {
     let _all = [];
+    operator = String(operator).toLowerCase();
+
+    if (operator === 'not' || operator === 'is' || operator === 'notnot' || operator === 'isis') return true;
+
     for (let type of Object.keys(TYPES)) {
       _all.push(...TYPES[type]);
     }
-    return Parser._containsAny(operator.toLowerCase(), _all);
+
+    _all.splice(_all.indexOf('not'), 1);
+    _all.splice(_all.indexOf('is'), 1);
+
+    return Parser._containsAny(operator, _all);
   }
 
   /**
@@ -205,7 +213,7 @@ export default class Parser {
    */
   static _containsAny(needle, haystack) {
     for (let straw of haystack) {
-      if (needle.includes(straw)) return true;
+      if (needle.indexOf(straw.toLowerCase()) > -1) return true;
     }
     return false;
   }
