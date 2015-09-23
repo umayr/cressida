@@ -106,7 +106,15 @@
     "no-empty-label": 2,
     "no-eval": 2,
     "no-ex-assign": 2,
-    "no-extend-native": 2,
+    "no-extend-native": [
+      2,
+      {
+        "exceptions": [
+          "String",
+          "Array"
+        ]
+      }
+    ],
     "no-extra-bind": 2,
     "no-extra-boolean-cast": 2,
     "no-extra-parens": [
