@@ -91,12 +91,12 @@ export default class Parser {
     let _type;
 
     operator = String(operator);
-    if (operator.includes('!')) {
+    if (operator.indexOf('!') > -1) {
       _not = !_not;
       _count++;
     }
-    if (operator.substr(0, 3).toLowerCase().includes('is')) _count += 2;
-    if (operator.includes('not')) {
+    if (operator.substr(0, 3).toLowerCase().indexOf('is') > -1) _count += 2;
+    if (operator.indexOf('not') > -1) {
       _not = !_not;
       _count += 3;
     }
