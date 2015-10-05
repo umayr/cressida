@@ -9,7 +9,6 @@ import { equal } from 'assert';
 
 import Cressida from '../src';
 
-
 function capitalise(string) {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
@@ -225,6 +224,27 @@ describe('Cressida', () => {
 
         equal(Message('foo', '!empty'), 'should not be empty.');
         equal(Message('foo', 'len', [10, 20]), 'should be between 10 to 20 characters.');
+      });
+    });
+  });
+  describe('exceptions', () => {
+    describe('#len', () => {
+      it('should work with aliases like length & bytelength', () => {
+        let Message = Cressida.create();
+
+        equal('should be between 10 to 20 characters.', Message('len', [10, 20]));
+        equal('should be between 10 to 20 characters.', Message('length', [10, 20]));
+        equal('should be between 10 to 20 characters.', Message('bytelength', [10, 20]));
+      });
+
+      it('should be a bit more intelligent', () => {
+        let Message = Cressida.create();
+
+        equal('should be 3 characters long.', Message('len', [3, 3]));
+        equal('should be at least 3 characters long.', Message('len', [3, undefined]));
+        equal('should be at least 3 characters long.', Message('len', [3, 0]));
+        equal('should be at max 3 characters long.', Message('len', [undefined, 3]));
+        equal('should be at max 3 characters long.', Message('len', [0, 3]));
       });
     });
   });

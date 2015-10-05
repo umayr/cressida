@@ -37,6 +37,9 @@ const STRING = {
   EQUALS: 'equal to %s',
   CONTAINS: 'containing %s in it',
   LEN: 'between %s to %s characters',
+  MINLEN: 'at least %s characters long',
+  MAXLEN: 'at max %s characters long',
+  EXACTLEN: '%s characters long',
   LENGTH: 'between %s to %s characters',
   BYTELENGTH: 'between %s to %s characters',
   ATLEAST: 'at least %s characters long',
@@ -138,8 +141,35 @@ export default class Parser {
         let [_operator, _args] = Array.from(arguments);
         let _msg;
 
-        if (_operator === 'len' || _operator === 'length' || _operator === 'bytelength' || _operator === 'equals' || _operator === 'contains') {
-          if ((_operator === 'len' || _operator === 'length' || _operator === 'bytelength') && _args.length === 1) _operator = 'atleast';
+        if (
+          _operator === 'len' ||
+          _operator === 'length' ||
+          _operator === 'bytelength' ||
+          _operator === 'equals' ||
+          _operator === 'contains'
+        ) {
+          if (
+            _operator === 'len' ||
+            _operator === 'length' ||
+            _operator === 'bytelength'
+          ) {
+            if (_args.length === 1) _operator = 'atleast';
+            else {
+              let [left, right] = _args; // "Because I'm sexy and I know it." - ES6
+              if ((typeof left === 'undefined' || left === 0) && right) {
+                _operator = 'maxlen';
+                _args = [right];
+              }
+              if ((typeof right === 'undefined' || right === 0) && left) {
+                _operator = 'minlen';
+                _args = [left];
+              }
+              if (left === right) {
+                _operator = 'exactlen';
+                _args = [left];
+              }
+            }
+          }
           _msg = format(STRING[_operator.toUpperCase()], ..._args);
         }
         else _msg = `${ STRING[_operator.toUpperCase()] || _operator }`;
