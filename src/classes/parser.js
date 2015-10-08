@@ -242,8 +242,9 @@ export default class Parser {
    * @private
    */
   static _containsAny(needle, haystack) {
+    needle = needle.replace(/^(!isnot|!is|!not|isnot|!|is|not)/, '').toLowerCase();
     for (let straw of haystack) {
-      if (needle.indexOf(straw.toLowerCase()) > -1) return true;
+      if (needle === straw.toLowerCase()) return true;
     }
     return false;
   }

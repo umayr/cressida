@@ -247,5 +247,13 @@ describe('Cressida', () => {
         equal('should be at max 3 characters long.', Message('len', [0, 3]));
       });
     });
+    describe('#all', () => {
+      it('should work if the name contains any operator', () => {
+        let Message = Cressida.create();
+
+        equal('Middle Initial should be at max 3 characters long.', Message('Middle Initial', 'len', [0, 3]));
+        equal('Alphabetic should be at max 3 characters long.', Message('Alphabetic', 'len', [0, 3]));
+      });
+    });
   });
 });
