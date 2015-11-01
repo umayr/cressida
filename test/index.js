@@ -165,6 +165,19 @@ describe('Cressida', () => {
         });
       }
     });
+    describe('#pattern', () => {
+      let src = {
+        matches: {
+          message: 'matching with /^[A-Z]{4}$/ regex.',
+          args: /^[A-Z]{4}$/
+        }
+      };
+      for (let operator of Object.keys(src)) {
+        it(`should generate \`${operator}\` messages`, () => {
+          make(operator, src[operator].message, src[operator].args, Message);
+        });
+      }
+    });
     describe('#boolean', () => {
       let src = {
         boolean: {
@@ -255,5 +268,6 @@ describe('Cressida', () => {
         equal('Alphabetic should be at max 3 characters long.', Message('Alphabetic', 'len', [0, 3]));
       });
     });
+
   });
 });
