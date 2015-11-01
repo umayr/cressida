@@ -200,8 +200,12 @@ export default class Parser {
         let [_operator, _args] = Array.from(arguments);
         let _regex;
 
-        if (_args.length > 1) _regex = new RegExp(_args[0], _args[1]);
-        else _regex = new RegExp(_args[0]);
+        if (Array.isArray(_args)) {
+          if (_args.length > 1) _regex = new RegExp(_args[0], _args[1]);
+          else _regex = new RegExp(_args[0]);
+        }
+        else _regex = new RegExp(_args);
+
 
         return `${format(PATTERN[_operator.toUpperCase()], _regex) || _operator }`;
       },
