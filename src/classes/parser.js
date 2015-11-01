@@ -48,9 +48,7 @@ const STRING = {
 };
 
 const PATTERN = {
-  MATCHES: 'matching with %s regex',
-  IS: 'matching with %s regex',
-  NOT: 'matching with %s regex'
+  MATCHES: 'matching with %s regex'
 };
 
 const NUMBER = {
@@ -205,7 +203,6 @@ export default class Parser {
           else _regex = new RegExp(_args[0]);
         }
         else _regex = new RegExp(_args);
-
 
         return `${format(PATTERN[_operator.toUpperCase()], _regex) || _operator }`;
       },
